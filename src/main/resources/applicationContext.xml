@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context.xsd">
+	
+	<!--  <context:annotation-config/>
+	<context:property-placeholder location="app.properties"/>
+	-->
+	
+	<bean name="customerRepositoryRef"
+			class="com.spring.repository.HibernateCustomerRepository">
+			<!-- <property name="dbUsername" value="${mysqlusername}"></property>  pull out the value from properties file-->
+	</bean>
+    <!-- bean definitions here 
+	<bean name="injection" 
+			class="com.spring.repository.HibernateCustomerRepository"></bean>
+	-->			
+	<bean name="customerService" 
+			class="com.spring.service.CustomerServiceImpl" autowire="byType" scope="prototype">
+			
+			<!-- Setter Injection name-based -->	
+			<!-- <property name="customerRepository" ref="customerRepositoryRef" />   -->
+			
+			<!-- constuctor injection indexed based-->
+			<!-- <constructor-arg index="0" ref="customerRepositoryRef"></constructor-arg> -->
+			
+			<!-- Autowire : wires the bean 
+			- byType : searches for the bean in given class (doesn't care about the setter name)
+			- byName : searches for the setter injection (setter method) in the given class
+			- Constructor : requires the no-argument(default) constrcutor
+			- no (none)
+			-->
+			
+			<!-- bean-Scope in xml defined as scope attribute
+			- singleton : refers to same object instance for each request
+			- prototype : refers to different object instance for each request
+			
+			-->
+			
+			
+			
+	</bean>
+</beans>
