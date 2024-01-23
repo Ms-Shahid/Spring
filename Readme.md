@@ -1,12 +1,85 @@
 ## Conference Web Application—Spring MVC
 
+### Req/Res cycle
 
-### Details 
-- The application is set up using mvn & developed using spring mvc
-- App uses the Spring annotations to handle the dependency & multiple beans 
-- The Speaker list is created at the repository layer using @Repository(used to indicate that the class provides the mechanism for storage, retrieval, search, update and delete operation on objects.)
-- @Service - the business logic resides within the service layer
-- @Controller - handles the incoming HTTP request through Dispatcher
-- @ModelMap - Handles the view 
-- The configurations are set using @Configuration in AppConfig, it can be described using setter or constructor injection mechanisms
-- @Bean - creates a bean
+![img.png](img.png)
+- Incoming request is first processed by front controller( dispatcher servlet)
+- The dispatcher routes the request to one of the controllers,
+- The controller delegates this req traffic to backend
+- backend could be web services, databases; it creates a model (kind of view to be rendered)
+- Now this rendering of model is separate from business logic, this model is passed to view template( view resolver) to render
+- req of view is returned to front controller & returned to browser.
+
+### Spring MVC configuration
+
+- pom.xml: handle all dependencies
+- config : defines all the configurations
+- Java : Java configurations
+- View: the web pages that render in browser
+
+### Spring MVC Configurations
+
+- SpringBootServletInitializer
+  - This helps up the launch-up application with desired configuration such as jsp, html
+  - The packaging of application to be `war` & it reduces burn to quickly wire up views
+
+- SpringBootServletInitializer looks for jsp/index pages & the extension for those
+    - `spring.mvc.view.prefix=/WEB-INF/views/
+        spring.mvc.view.suffix=.jsp`
+
+- Wire up this jsp page to some controller say greeting at `@GetMapping("greeting")`
+
+### MVC Structure
+
+![img_1.png](img_1.png)
+
+- The request comes through View by some user Events 
+- The Controller handles this view & routes the respective Model & select View based on user events
+- The model gets updated in the database/backend
+- This uses absorber & subscriber listener design pattern
+
+#### MCV Updated version
+
+- ![img_2.png](img_2.png)
+- The MVC Structure is based on an MVC design pattern
+- The view can access the model through the controller 
+- We make lightweight req from view to an access model through controller
+- View doesn't go directly to db to fetch
+
+#### Application Layers
+![img_3.png](img_3.png)
+
+- Data Layer
+    - At the bottom we have a data model, which can be JDBC, Hibernate, JPA. This layer represents data or model of application 
+- Controller Layer
+  - Which interprets user request & select the appropriate view based on user request
+- View Layer
+  - The web page through which user actions are performed such as jsp, thymeleaf, html
+
+  
+### Spring Components 
+
+- Spring provides components with respect to mvc architecture, `controller`, `service`, `repository`
+- ##### Controller Tier
+  - Which routes the incoming traffic to get user-specific view  
+  - **Business logic should not be handled here**
+  - This tier should coordinate with service & repository
+  - Annotated with `@Component` 
+  - Handle user exceptions & view routing
+- ##### Service Tier
+  - **The business should reside in this tier**
+  - Ensure business object state, all state management should be handled 
+  - Transactions should begin, such as access web service, roll back 2 face commits
+  - Annotated with `@Service`
+-  ##### Repository tier 
+   - also referred as DAO(Data Access Object)
+   - Service tier describes the actions we want to do & repo tier tell data that we are going to interact with CRUD operations
+   - one to one with objects
+   - one to one or one to many or many to many table
+   - Annotated with `@Repository`
+
+
+### Interceptors
+
+- Interceptors allow us to intercept calls to our servers & perform common tasks on server
+- common Interceptors are `Logging` useful for debugging, security, performance monitoring
