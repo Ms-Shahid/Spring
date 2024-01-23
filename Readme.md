@@ -2,7 +2,7 @@
 
 ### Req/Res cycle
 
-![img.png](img.png)
+![img.png](src/main/resources/images/img.png)
 - Incoming request is first processed by front controller( dispatcher servlet)
 - The dispatcher routes the request to one of the controllers,
 - The controller delegates this req traffic to backend
@@ -31,7 +31,7 @@
 
 ### MVC Structure
 
-![img_1.png](img_1.png)
+![img_1.png](src/main/resources/images/img_1.png)
 
 - The request comes through View by some user Events 
 - The Controller handles this view & routes the respective Model & select View based on user events
@@ -40,14 +40,14 @@
 
 #### MCV Updated version
 
-- ![img_2.png](img_2.png)
+- ![img_2.png](src/main/resources/images/img_2.png)
 - The MVC Structure is based on an MVC design pattern
 - The view can access the model through the controller 
 - We make lightweight req from view to an access model through controller
 - View doesn't go directly to db to fetch
 
 #### Application Layers
-![img_3.png](img_3.png)
+![img_3.png](src/main/resources/images/img_3.png)
 
 - Data Layer
     - At the bottom we have a data model, which can be JDBC, Hibernate, JPA. This layer represents data or model of application 

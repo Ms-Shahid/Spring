@@ -10,7 +10,7 @@ public class Greeting {
 
     @GetMapping(value="greeting")
     public String greeting(Map<String, Object> model){
-        model.put("message", "Welcome Shahid😎😎😎");
+        model.put("message", "Welcome 😎");
         return "index";
     }
 }
