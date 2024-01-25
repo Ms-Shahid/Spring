@@ -83,3 +83,12 @@
 
 - Interceptors allow us to intercept calls to our servers & perform common tasks on server
 - common Interceptors are `Logging` useful for debugging, security, performance monitoring
+
+
+### Application using Thymeleaf
+
+- Thymeleaf is a light weight spring view resolver 
+- In case of JSP, we don't have to create a template engine, just need the view resolver
+- But in case of Thymeleaf, we have to create a template resolver along with template engine 
+- This template engine helps process page & substitute the model value in pages
+- The view Resolver takes up the template loaded by template resolver using template engine

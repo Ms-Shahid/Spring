@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mshahid1
-  Date: 23-01-2024
-  Time: 20:39
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -16,6 +10,7 @@
 <body>
 <h1> Welcome to Registrations </h1>
 <form:form modelAttribute="registration">
+    <form:errors path="*" cssClass="errorblock" element="div" />
     <table>
         <tr>
             <td>
@@ -24,9 +19,12 @@
             <td>
                 <form:input path="name"></form:input>
             </td>
+            <td>
+                <form:errors path="name" cssClass="error" />
+            </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="4">
             <input type="submit" value="Add Registration">
             </td>
         </tr>
